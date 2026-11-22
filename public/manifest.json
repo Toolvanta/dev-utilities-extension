@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Frontend Dev Utility",
+  "short_name": "Dev Utility",
+  "version": "1.0.0",
+  "description": "40 frontend tools in one extension: color and font pickers, screenshots, inspectors, accessibility QA, and more.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "sidePanel",
+    "commands",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Frontend Dev Utility"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "open-utility": {
+      "suggested_key": { "default": "Ctrl+Shift+U" },
+      "description": "Open Frontend Dev Utility"
+    },
+    "capture-screen": {
+      "suggested_key": { "default": "Ctrl+Shift+S" },
+      "description": "Capture viewport screenshot"
+    },
+    "pick-color": {
+      "suggested_key": { "default": "Ctrl+Shift+C" },
+      "description": "Start page color pick"
+    }
+  }
+}
